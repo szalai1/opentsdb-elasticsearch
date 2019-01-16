@@ -15,6 +15,7 @@ package net.opentsdb.search.schemas.tsmeta;
 import java.io.IOException;
 import java.util.concurrent.CancellationException;
 
+import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.concurrent.FutureCallback;
@@ -171,6 +172,7 @@ public class AnalyzedAndMappedTSMetaSchema extends TSMetaSchema {
     }
     
     final HttpPost post = new HttpPost(uri.toString());
+    post.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
     post.setEntity(new ByteArrayEntity(TSMetaAugment.serializeToBytes(meta)));
     es.httpClient().execute(post, new AsyncCB());
     return result;
