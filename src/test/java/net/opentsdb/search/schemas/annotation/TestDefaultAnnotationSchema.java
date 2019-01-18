@@ -120,7 +120,7 @@ public class TestDefaultAnnotationSchema {
     // good with async
     when(es.asyncReplication()).thenReturn(true);
     deferred = schema.index(note);
-    assertEquals(HOST + "/" +  "/" + doc_type
+    assertEquals(HOST +  "/" + doc_type
         + "/1483228800010101?replication=async", request.getURI().toString());
     final String payload = EntityUtils.toString(((HttpPost) request)
         .getEntity());
