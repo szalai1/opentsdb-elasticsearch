@@ -116,8 +116,6 @@ public abstract class AnnotationSchema {
     
     final StringBuilder uri = new StringBuilder(es.host())
       .append("/")
-      .append(es.index())
-      .append("/")
       .append(doc_type)
       .append("/")
       .append(note.getStartTime());
@@ -186,8 +184,6 @@ public abstract class AnnotationSchema {
     }
     
     final StringBuilder uri = new StringBuilder(es.host())
-      .append("/")
-      .append(es.index())
       .append("/")
       .append(doc_type)
       .append("/")

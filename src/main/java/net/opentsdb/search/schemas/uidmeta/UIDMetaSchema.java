@@ -120,8 +120,6 @@ public abstract class UIDMetaSchema {
     
     final StringBuilder uri = new StringBuilder(es.host())
       .append("/")
-      .append(es.index())
-      .append("/")
       .append(doc_type)
       .append("/")
       .append(meta.getUID());
@@ -188,8 +186,6 @@ public abstract class UIDMetaSchema {
     }
     
     final StringBuilder uri = new StringBuilder(es.host())
-      .append("/")
-      .append(es.index())
       .append("/")
       .append(doc_type)
       .append("/")

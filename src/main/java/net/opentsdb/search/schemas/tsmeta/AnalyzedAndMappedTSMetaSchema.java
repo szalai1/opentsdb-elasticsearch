@@ -163,8 +163,6 @@ public class AnalyzedAndMappedTSMetaSchema extends TSMetaSchema {
     
     final StringBuilder uri = new StringBuilder(es.host())
       .append("/")
-      .append(es.index())
-      .append("/")
       .append(doc_type)
       .append("/")
       .append(meta.getTSUID());
