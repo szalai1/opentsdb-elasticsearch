@@ -73,6 +73,7 @@ public abstract class UIDMetaSchema {
    * exception on failure.
    */
   public Deferred<Object> index(final UIDMeta meta) {
+    LOG.debug("uidmeta index");
     if (meta == null) {
       return Deferred.fromError(new IllegalArgumentException(
           "Meta cannot be null."));

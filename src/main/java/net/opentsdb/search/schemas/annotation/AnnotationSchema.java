@@ -70,6 +70,7 @@ public abstract class AnnotationSchema {
    * exception on failure.
    */
   public Deferred<Object> index(final Annotation note) {
+    LOG.debug("annotation debug");
     if (note == null) {
       return Deferred.fromError(new IllegalArgumentException(
           "Annotation cannot be null."));

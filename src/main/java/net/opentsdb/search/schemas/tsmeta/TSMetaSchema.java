@@ -121,6 +121,7 @@ public abstract class TSMetaSchema {
    * exception on failure.
    */
   public Deferred<Object> index(final TSMeta meta) {
+    LOG.debug("tsmeta index");
     if (meta == null) {
       return Deferred.fromError(new IllegalArgumentException(
           "Meta cannot be null."));
