@@ -120,7 +120,7 @@ public class TestDefaultTSMetaSchema {
       deferred.join(1);
       fail("Expected TimeoutException");
     } catch (TimeoutException e) { }
-    assertEquals(HOST + "/" + index + "/" + doc_type + "/010101", 
+    assertEquals(HOST + "/" + doc_type + "/010101",
         request.getURI().toString());
     
     // good
@@ -131,7 +131,7 @@ public class TestDefaultTSMetaSchema {
     // good with async
     when(es.asyncReplication()).thenReturn(true);
     deferred = schema.index(meta);
-    assertEquals(HOST + "/" + index + "/" + doc_type 
+    assertEquals(HOST + "/" + doc_type
         + "/010101?replication=async", request.getURI().toString());
     final String payload = EntityUtils.toString(((HttpPost) request)
         .getEntity());
@@ -182,7 +182,7 @@ public class TestDefaultTSMetaSchema {
       deferred.join(1);
       fail("Expected TimeoutException");
     } catch (TimeoutException e) { }
-    assertEquals(HOST + "/" + index + "/" + doc_type + "/010101", 
+    assertEquals(HOST + "/" + doc_type + "/010101",
         request.getURI().toString());
     
     // good
@@ -193,7 +193,7 @@ public class TestDefaultTSMetaSchema {
     // good with async
     when(es.asyncReplication()).thenReturn(true);
     deferred = schema.delete("010101");
-    assertEquals(HOST + "/" + index + "/" + doc_type 
+    assertEquals(HOST + "/" + doc_type
         + "/010101?replication=async", request.getURI().toString());
     
     // bad
