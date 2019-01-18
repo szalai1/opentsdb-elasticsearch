@@ -1,14 +1,16 @@
 {
-    "uidmeta": {
-        "properties": {
-            "uid": {
-                "type": "string",
-                "index": "not_analyzed"
-            },
-            "name": {
-                "type": "string",
-                "index": "not_analyzed"
-            }
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "uid": {
+          "type": "keyword",
+          "index": false
+        },
+        "name": {
+          "type": "keyword",
+          "index": false
         }
+      }
     }
+  }
 }
