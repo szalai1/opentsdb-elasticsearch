@@ -292,6 +292,7 @@ public final class ElasticSearch extends SearchPlugin {
   
   @Override
   public Deferred<SearchQuery> executeQuery(final SearchQuery query) {
+    LOG.info(">>>> search ");
     final Deferred<SearchQuery> result = new Deferred<SearchQuery>();
 
     final StringBuilder uri = new StringBuilder(host);
@@ -329,6 +330,7 @@ public final class ElasticSearch extends SearchPlugin {
     post.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
     post.setEntity(new ByteArrayEntity(JSON.serializeToBytes(body)));
 
+    LOG.info(">>>> search uri: " +  uri.toString() + "   " + body);
     http_client.execute(post, new SearchCB(query, result));
     queries_executed.increment();
     return result;
