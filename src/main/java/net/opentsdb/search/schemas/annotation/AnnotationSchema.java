@@ -119,7 +119,7 @@ public abstract class AnnotationSchema {
     final StringBuilder uri = new StringBuilder(es.host())
       .append("/")
       .append(doc_type)
-      .append("/")
+      .append("/_doc/")
       .append(note.getStartTime());
     if (!Strings.isNullOrEmpty(note.getTSUID())) {
       uri.append(note.getTSUID());
@@ -189,7 +189,7 @@ public abstract class AnnotationSchema {
     final StringBuilder uri = new StringBuilder(es.host())
       .append("/")
       .append(doc_type)
-      .append("/")
+      .append("/_doc/")
       .append(note.getStartTime());
     if (!Strings.isNullOrEmpty(note.getTSUID())) {
       uri.append(note.getTSUID());

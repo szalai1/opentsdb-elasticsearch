@@ -122,7 +122,7 @@ public abstract class UIDMetaSchema {
     final StringBuilder uri = new StringBuilder(es.host())
       .append("/")
       .append(doc_type)
-      .append("/")
+      .append("/_doc/")
       .append(meta.getUID());
     if (es.asyncReplication()) {
       uri.append("?replication=async");
@@ -190,7 +190,7 @@ public abstract class UIDMetaSchema {
     final StringBuilder uri = new StringBuilder(es.host())
       .append("/")
       .append(doc_type)
-      .append("/")
+      .append("/_doc/")
       .append(meta.getUID());
     if (es.asyncReplication()) {
       uri.append("?replication=async");
