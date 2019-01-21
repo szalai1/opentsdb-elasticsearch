@@ -295,7 +295,7 @@ public final class ElasticSearch extends SearchPlugin {
     final Deferred<SearchQuery> result = new Deferred<SearchQuery>();
 
     final StringBuilder uri = new StringBuilder(host);
-    uri.append("/").append(index).append("/");
+    uri.append("/");
     switch(query.getType()) {
       case TSMETA:
       case TSMETA_SUMMARY:
