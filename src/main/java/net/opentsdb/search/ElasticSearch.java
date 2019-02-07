@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.config.RequestConfig;
@@ -294,7 +295,7 @@ public final class ElasticSearch extends SearchPlugin {
     final Deferred<SearchQuery> result = new Deferred<SearchQuery>();
 
     final StringBuilder uri = new StringBuilder(host);
-    uri.append("/").append(index).append("/");
+    uri.append("/");
     switch(query.getType()) {
       case TSMETA:
       case TSMETA_SUMMARY:
@@ -325,6 +326,7 @@ public final class ElasticSearch extends SearchPlugin {
     qs.put("query_string", query_string);
 
     final HttpPost post = new HttpPost(uri.toString());
+    post.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
     post.setEntity(new ByteArrayEntity(JSON.serializeToBytes(body)));
 
     http_client.execute(post, new SearchCB(query, result));

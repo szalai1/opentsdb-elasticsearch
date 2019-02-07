@@ -15,6 +15,7 @@ package net.opentsdb.search.schemas.annotation;
 import java.io.IOException;
 import java.util.concurrent.CancellationException;
 
+import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPost;
@@ -116,10 +117,8 @@ public abstract class AnnotationSchema {
     
     final StringBuilder uri = new StringBuilder(es.host())
       .append("/")
-      .append(es.index())
-      .append("/")
       .append(doc_type)
-      .append("/")
+      .append("/_doc/")
       .append(note.getStartTime());
     if (!Strings.isNullOrEmpty(note.getTSUID())) {
       uri.append(note.getTSUID());
@@ -129,6 +128,7 @@ public abstract class AnnotationSchema {
     }
     
     final HttpPost post = new HttpPost(uri.toString());
+    post.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
     post.setEntity(new ByteArrayEntity(JSON.serializeToBytes(note)));
     es.httpClient().execute(post, new AsyncCB());
     return result;
@@ -187,10 +187,8 @@ public abstract class AnnotationSchema {
     
     final StringBuilder uri = new StringBuilder(es.host())
       .append("/")
-      .append(es.index())
-      .append("/")
       .append(doc_type)
-      .append("/")
+      .append("/_doc/")
       .append(note.getStartTime());
     if (!Strings.isNullOrEmpty(note.getTSUID())) {
       uri.append(note.getTSUID());

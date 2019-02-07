@@ -15,6 +15,7 @@ package net.opentsdb.search.schemas.uidmeta;
 import java.io.IOException;
 import java.util.concurrent.CancellationException;
 
+import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPost;
@@ -119,16 +120,15 @@ public abstract class UIDMetaSchema {
     
     final StringBuilder uri = new StringBuilder(es.host())
       .append("/")
-      .append(es.index())
-      .append("/")
       .append(doc_type)
-      .append("/")
+      .append("/_doc/")
       .append(meta.getUID());
     if (es.asyncReplication()) {
       uri.append("?replication=async");
     }
     
     final HttpPost post = new HttpPost(uri.toString());
+    post.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
     post.setEntity(new ByteArrayEntity(JSON.serializeToBytes(meta)));
     es.httpClient().execute(post, new AsyncCB());
     return result;
@@ -188,10 +188,8 @@ public abstract class UIDMetaSchema {
     
     final StringBuilder uri = new StringBuilder(es.host())
       .append("/")
-      .append(es.index())
-      .append("/")
       .append(doc_type)
-      .append("/")
+      .append("/_doc/")
       .append(meta.getUID());
     if (es.asyncReplication()) {
       uri.append("?replication=async");

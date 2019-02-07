@@ -109,7 +109,7 @@ public class TestDefaultAnnotationSchema {
       deferred.join(1);
       fail("Expected TimeoutException");
     } catch (TimeoutException e) { }
-    assertEquals(HOST + "/" + index + "/" + doc_type + "/1483228800010101", 
+    assertEquals(HOST +  "/" + doc_type + "/_doc/1483228800010101",
         request.getURI().toString());
     
     // good
@@ -120,8 +120,8 @@ public class TestDefaultAnnotationSchema {
     // good with async
     when(es.asyncReplication()).thenReturn(true);
     deferred = schema.index(note);
-    assertEquals(HOST + "/" + index + "/" + doc_type 
-        + "/1483228800010101?replication=async", request.getURI().toString());
+    assertEquals(HOST +  "/" + doc_type
+        + "/_doc/1483228800010101?replication=async", request.getURI().toString());
     final String payload = EntityUtils.toString(((HttpPost) request)
         .getEntity());
     assertTrue(payload.contains("\"description\":\"Unit testing Dragonstone!\""));
@@ -133,8 +133,8 @@ public class TestDefaultAnnotationSchema {
     note.setDescription("Unit testing Dragonstone!");
     note.setStartTime(1483228800);
     deferred = schema.index(note);
-    assertEquals(HOST + "/" + index + "/" + doc_type 
-        + "/1483228800?replication=async", request.getURI().toString());
+    assertEquals(HOST +  "/" + doc_type
+        + "/_doc/1483228800?replication=async", request.getURI().toString());
     
     // bad
     deferred = schema.index(note);
@@ -178,7 +178,7 @@ public class TestDefaultAnnotationSchema {
       deferred.join(1);
       fail("Expected TimeoutException");
     } catch (TimeoutException e) { }
-    assertEquals(HOST + "/" + index + "/" + doc_type + "/1483228800010101", 
+    assertEquals(HOST + "/" + doc_type + "/_doc/1483228800010101",
         request.getURI().toString());
     
     // good
@@ -189,8 +189,8 @@ public class TestDefaultAnnotationSchema {
     // good with async
     when(es.asyncReplication()).thenReturn(true);
     deferred = schema.delete(note);
-    assertEquals(HOST + "/" + index + "/" + doc_type + 
-        "/1483228800010101?replication=async",request.getURI().toString());
+    assertEquals(HOST + "/" + doc_type +
+        "/_doc/1483228800010101?replication=async",request.getURI().toString());
     
     // bad
     deferred = schema.delete(note);
